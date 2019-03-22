@@ -21,12 +21,15 @@
     <ClCompile Include="Mipe3DEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Mipe3DRenderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mipe3DEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Mipe3DIScene.h">
+    <ClInclude Include="Mipe3DRenderSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

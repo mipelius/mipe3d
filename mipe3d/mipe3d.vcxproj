@@ -165,10 +165,11 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mipe3DEngine.cpp" />
+    <ClCompile Include="Mipe3DRenderSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Mipe3DIScene.h" />
     <ClInclude Include="Mipe3DEngine.h" />
+    <ClInclude Include="Mipe3DRenderSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

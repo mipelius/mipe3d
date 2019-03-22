@@ -1,10 +1,11 @@
 #pragma once
 
-struct SDL_Window;
-typedef void* SDL_GLContext;
+#include <memory>
 
 namespace mipe3d
 {
+
+class RenderSystem;
 
 class Engine
 {
@@ -19,11 +20,7 @@ private:
 	void startGameLoop();
 
 	bool m_isRunning = false;
-	SDL_Window* m_window;
-	SDL_GLContext m_glContext;
-
-	static const int WINDOW_WIDTH = 1024;
-	static const int WINDOW_HEIGHT = 768;
+	RenderSystem* m_renderSystem;
 };
 
 } // namespace mipe3d
