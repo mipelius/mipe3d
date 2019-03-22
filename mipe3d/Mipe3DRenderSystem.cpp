@@ -72,7 +72,6 @@ bool RenderSystem::shutDown()
 	return true;
 }
 
-
 void RenderSystem::update()
 {
 	SDL_GL_SwapWindow(m_window);

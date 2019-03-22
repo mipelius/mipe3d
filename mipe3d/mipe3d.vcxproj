@@ -167,12 +167,16 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mipe3DEngine.cpp" />
     <ClCompile Include="Mipe3DRenderSystem.cpp" />
+    <ClCompile Include="Mipe3DResource.cpp" />
+    <ClCompile Include="Mipe3DResourceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ExampleScene.h" />
     <ClInclude Include="Mipe3DEngine.h" />
+    <ClInclude Include="Mipe3DResource.h" />
     <ClInclude Include="Mipe3DIScene.h" />
     <ClInclude Include="Mipe3DRenderSystem.h" />
+    <ClInclude Include="Mipe3DResourceManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

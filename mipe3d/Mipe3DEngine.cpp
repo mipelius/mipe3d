@@ -1,5 +1,6 @@
 #include "Mipe3DEngine.h"
 #include "Mipe3DRenderSystem.h"
+#include "Mipe3DResourceManager.h"
 #include "Mipe3DIScene.h"
 
 #include <SDL.h>
@@ -12,11 +13,13 @@ namespace mipe3d
 Engine::Engine()
 {
 	m_renderSystem = new RenderSystem();
+	m_resourceManager = new ResourceManager();
 }
 
 Engine::~Engine() 
 {
 	delete m_renderSystem;
+	delete m_resourceManager;
 }
 
 void Engine::run(IScene& scene)
@@ -38,6 +41,10 @@ bool Engine::startUp()
 	{
 		return false;
 	}
+	if (!m_resourceManager->startUp())
+	{
+		return false;
+	}
 	if (!m_scene->startUp())
 	{
 		return false;
@@ -49,6 +56,7 @@ bool Engine::shutDown()
 	bool success = true;
 
 	success = m_scene->shutDown() && success;
+	success = m_resourceManager->shutDown() && success;
 	success = m_renderSystem->shutDown() && success;
 
 	return success;
