@@ -6,12 +6,13 @@ namespace mipe3d
 {
 
 class RenderSystem;
+class IScene;
 
 class Engine
 {
 public:
 	Engine();
-	void run();
+	void run(IScene& scene);
 	virtual ~Engine();
 
 private:
@@ -20,7 +21,8 @@ private:
 	void startGameLoop();
 
 	bool m_isRunning = false;
-	RenderSystem* m_renderSystem;
+	RenderSystem* m_renderSystem = nullptr;
+	IScene* m_scene = nullptr;
 };
 
 } // namespace mipe3d

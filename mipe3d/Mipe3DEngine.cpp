@@ -1,5 +1,6 @@
 #include "Mipe3DEngine.h"
 #include "Mipe3DRenderSystem.h"
+#include "Mipe3DIScene.h"
 
 #include <SDL.h>
 
@@ -18,23 +19,39 @@ Engine::~Engine()
 	delete m_renderSystem;
 }
 
-void Engine::run()
+void Engine::run(IScene& scene)
 {
+	m_scene = &scene;
+
 	if (startUp())
 	{
 		startGameLoop();
 		shutDown();
 	}
+
+	m_scene = nullptr;
 }
 
 bool Engine::startUp()
 {
-	return m_renderSystem->startUp();
+	if (!m_renderSystem->startUp())
+	{
+		return false;
+	}
+	if (!m_scene->startUp())
+	{
+		return false;
+	}
 }
 
 bool Engine::shutDown()
 {
-	return m_renderSystem->shutDown();
+	bool success = true;
+
+	success = m_scene->shutDown() && success;
+	success = m_renderSystem->shutDown() && success;
+
+	return success;
 }
 
 void Engine::startGameLoop()
@@ -43,6 +60,7 @@ void Engine::startGameLoop()
 
 	while (m_isRunning)
 	{
+		m_scene->update();
 		m_renderSystem->update();
 
 		if (SDL_QuitRequested())

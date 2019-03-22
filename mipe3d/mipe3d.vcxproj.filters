@@ -24,12 +24,21 @@
     <ClCompile Include="Mipe3DRenderSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ExampleScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mipe3DEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Mipe3DRenderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mipe3DIScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ExampleScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
