@@ -1,7 +1,8 @@
-#include <iostream>
+#include "Mipe3DEngine.h"
 
 int main(int argc, char *argv[])
 {
-	std::cout << "Hello World!" << std::endl;
+	mipe3d::Engine engine;
+	engine.run();
 	return 0;
 }
