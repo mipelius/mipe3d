@@ -1,6 +1,4 @@
-**/Debug/
-**/Release/
-**/x64
+**/build/
 **/*.vcxproj.user
 .vs/
 external/
