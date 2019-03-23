@@ -23,6 +23,8 @@ bool ResourceManager::startUp()
 		auto resource = pathToResourcePair.second;
 		resource->load();
 	}
+
+	return true;
 }
 
 bool ResourceManager::shutDown()
@@ -32,6 +34,8 @@ bool ResourceManager::shutDown()
 		auto resource = pathToResourcePair.second;
 		delete resource;
 	}
+
+	return true;
 }
 
 } // namespace mipe3d
