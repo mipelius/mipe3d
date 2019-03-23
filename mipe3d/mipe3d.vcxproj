@@ -18,6 +18,22 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\ExampleScene.h" />
+    <ClInclude Include="include\Mipe3DEngine.h" />
+    <ClInclude Include="include\Mipe3DIScene.h" />
+    <ClInclude Include="include\Mipe3DRenderSystem.h" />
+    <ClInclude Include="include\Mipe3DResource.h" />
+    <ClInclude Include="include\Mipe3DResourceManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ExampleScene.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Mipe3DEngine.cpp" />
+    <ClCompile Include="src\Mipe3DRenderSystem.cpp" />
+    <ClCompile Include="src\Mipe3DResource.cpp" />
+    <ClCompile Include="src\Mipe3DResourceManager.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{ED71E128-15BD-433E-977F-7A1844B2C643}</ProjectGuid>
@@ -92,7 +108,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -110,7 +126,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,7 +146,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,7 +168,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -162,22 +178,6 @@
       <AdditionalDependencies>$(SolutionDir)external\SDL2-2.0.9\lib\x64\SDL2main.lib;$(SolutionDir)external\SDL2-2.0.9\lib\x64\SDL2.lib;$(SolutionDir)external\glew-2.1.0\lib\Release\x64\glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="ExampleScene.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Mipe3DEngine.cpp" />
-    <ClCompile Include="Mipe3DRenderSystem.cpp" />
-    <ClCompile Include="Mipe3DResource.cpp" />
-    <ClCompile Include="Mipe3DResourceManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="ExampleScene.h" />
-    <ClInclude Include="Mipe3DEngine.h" />
-    <ClInclude Include="Mipe3DResource.h" />
-    <ClInclude Include="Mipe3DIScene.h" />
-    <ClInclude Include="Mipe3DRenderSystem.h" />
-    <ClInclude Include="Mipe3DResourceManager.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
