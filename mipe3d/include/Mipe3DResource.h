@@ -1,11 +1,13 @@
 #pragma once
 
+#include "apidef.h"
+
 #include <string>
 
 namespace mipe3d
 {
 
-class Resource
+class MIPE3D_API Resource
 {
 public:
 	Resource(const std::string& filePath);

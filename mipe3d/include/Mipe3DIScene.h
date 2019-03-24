@@ -1,9 +1,11 @@
 #pragma once
 
+#include "apidef.h"
+
 namespace mipe3d
 {
 
-class IScene
+class MIPE3D_API IScene
 {
 public:
 	virtual ~IScene() {};

@@ -1,12 +1,14 @@
 #pragma once
 
+#include "apidef.h"
+
 struct SDL_Window;
 typedef void* SDL_GLContext;
 
 namespace mipe3d
 {
 
-class RenderSystem
+class MIPE3D_API RenderSystem
 {
 	friend class Engine;
 

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "apidef.h"
+
 #include <memory>
 
 namespace mipe3d
@@ -9,7 +11,7 @@ class RenderSystem;
 class ResourceManager;
 class IScene;
 
-class Engine
+class MIPE3D_API Engine
 {
 public:
 	Engine();

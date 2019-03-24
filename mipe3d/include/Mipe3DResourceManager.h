@@ -1,5 +1,7 @@
 #pragma once
 
+#include "apidef.h"
+
 #include <string>
 #include <map>
 
@@ -8,7 +10,7 @@ namespace mipe3d
 
 class Resource;
 
-class ResourceManager
+class MIPE3D_API ResourceManager
 {
 	friend class Engine;
 
