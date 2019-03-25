@@ -4,7 +4,6 @@
 int main(int argc, char *argv[])
 {
 	mipe3d::example::ExampleScene exampleScene;
-	mipe3d::Engine engine;
-	engine.run(exampleScene);
+	mipe3d::engine().run(exampleScene);
 	return 0;
 }
