@@ -1,3 +1,4 @@
 {
-	"type" : "mesh"
+	"type" : "mesh",
+	"source" : "dummy.obj"
 }
