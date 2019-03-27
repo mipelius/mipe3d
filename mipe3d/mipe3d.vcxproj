@@ -20,9 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\apidef.h" />
-    <ClInclude Include="include\dirent.h" />
     <ClInclude Include="include\Mipe3DEngine.h" />
     <ClInclude Include="include\Mipe3DIScene.h" />
+    <ClInclude Include="include\Mipe3DMesh.h" />
     <ClInclude Include="include\Mipe3DRenderSystem.h" />
     <ClInclude Include="include\Mipe3DResource.h" />
     <ClInclude Include="include\Mipe3DResourceManager.h" />
@@ -32,6 +32,7 @@
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\Mipe3DEngine.cpp" />
+    <ClCompile Include="src\Mipe3DMesh.cpp" />
     <ClCompile Include="src\Mipe3DRenderSystem.cpp" />
     <ClCompile Include="src\Mipe3DResource.cpp" />
     <ClCompile Include="src\Mipe3DResourceManager.cpp" />
@@ -119,7 +120,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;$(ProjectDir)\include;$(SolutionDir)external\json\include;$(SolutionDir)external\dirent\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,7 +139,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;$(ProjectDir)\include;$(SolutionDir)external\json\include;$(SolutionDir)external\dirent\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -159,7 +160,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;$(ProjectDir)\include;$(SolutionDir)external\json\include;$(SolutionDir)external\dirent\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -181,7 +182,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;$(ProjectDir)\include;$(SolutionDir)external\json\include;$(SolutionDir)external\dirent\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
