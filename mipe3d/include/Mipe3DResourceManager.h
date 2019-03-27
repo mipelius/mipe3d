@@ -5,6 +5,8 @@
 #include <string>
 #include <map>
 
+#include "Mipe3DMesh.h"
+
 namespace mipe3d
 {
 
@@ -26,6 +28,8 @@ private:
 
 	bool startUp();
 	bool shutDown();
+
+	bool createResource(const std::string& key, const std::string& fullFilePath);
 
 	std::map<std::string, Resource*> m_pathToResourceMap;
 };
