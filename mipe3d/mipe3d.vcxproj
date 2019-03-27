@@ -120,7 +120,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;$(ProjectDir)\include;$(SolutionDir)external\json\include;$(SolutionDir)external\dirent\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include\;$(SolutionDir)external\glew-2.1.0\include\;$(ProjectDir)include\;$(SolutionDir)external\json\include\;$(SolutionDir)external\dirent\include\;$(SolutionDir)external\glm-0.9.9.4\glm\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,7 +139,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;$(ProjectDir)\include;$(SolutionDir)external\json\include;$(SolutionDir)external\dirent\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include\;$(SolutionDir)external\glew-2.1.0\include\;$(ProjectDir)include\;$(SolutionDir)external\json\include\;$(SolutionDir)external\dirent\include\;$(SolutionDir)external\glm-0.9.9.4\glm\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -160,7 +160,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;$(ProjectDir)\include;$(SolutionDir)external\json\include;$(SolutionDir)external\dirent\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include\;$(SolutionDir)external\glew-2.1.0\include\;$(ProjectDir)include\;$(SolutionDir)external\json\include\;$(SolutionDir)external\dirent\include\;$(SolutionDir)external\glm-0.9.9.4\glm\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -182,7 +182,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include;$(SolutionDir)external\glew-2.1.0\include;$(ProjectDir)\include;$(SolutionDir)external\json\include;$(SolutionDir)external\dirent\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2-2.0.9\include\;$(SolutionDir)external\glew-2.1.0\include\;$(ProjectDir)include\;$(SolutionDir)external\json\include\;$(SolutionDir)external\dirent\include\;$(SolutionDir)external\glm-0.9.9.4\glm\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
