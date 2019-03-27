@@ -1,5 +1,9 @@
 #include "Mipe3DMesh.h"
 
+#include <GL/glew.h>
+
+#include <fstream>
+
 namespace mipe3d
 {
 
@@ -10,14 +14,15 @@ Mesh::~Mesh()
 
 }
 
-void Mesh::load()
+bool Mesh::loadInternal(const nlohmann::json& metaDefinition)
 {
-
+	// ...
+	return true;
 }
 
-void Mesh::unload()
+void Mesh::unloadInternal()
 {
-
+	// ...
 }
 
 } // namespace mipe3d

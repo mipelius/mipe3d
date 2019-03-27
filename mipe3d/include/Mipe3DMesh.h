@@ -11,8 +11,10 @@ class MIPE3D_API Mesh : public Resource
 public:
 	Mesh(const std::string& filePath);
 	~Mesh() override;
-	void load() override;
-	void unload() override;
+	
+protected:
+	bool loadInternal(const nlohmann::json& metaDefinition) override;
+	void unloadInternal() override;
 };
 
 } // namespace mipe3d
