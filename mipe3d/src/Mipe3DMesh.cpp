@@ -58,6 +58,8 @@ bool Mesh::loadInternal(const nlohmann::json& metaDefinition)
 		return false;
 	}
 
+	m_bufferSize = vertices.size();
+
 	glGenVertexArrays(1, &m_vertexArrayId);
 	glBindVertexArray(m_vertexArrayId);
 
@@ -86,6 +88,32 @@ void Mesh::unloadInternal()
 	glDeleteVertexArrays(1, &m_vertexArrayId);
 }
 
+void Mesh::glBindBuffers()
+{
+	glEnableVertexAttribArray(GL_ATTRIBUTE_VERTEX);
+	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferId);
+	glVertexAttribPointer(GL_ATTRIBUTE_VERTEX, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+
+	glEnableVertexAttribArray(GL_ATTRIBUTE_NORMAL);
+	glBindBuffer(GL_ARRAY_BUFFER, m_normalBufferId);
+	glVertexAttribPointer(GL_ATTRIBUTE_NORMAL, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+
+	glEnableVertexAttribArray(GL_ATTRIBUTE_UV);
+	glBindBuffer(GL_ARRAY_BUFFER, m_uvBufferId);
+	glVertexAttribPointer(GL_ATTRIBUTE_UV,	2, GL_FLOAT, GL_FALSE, 0, (void*)0);
+}
+
+void Mesh::glUnbindBuffers()
+{
+	glDisableVertexAttribArray(GL_ATTRIBUTE_VERTEX);
+	glDisableVertexAttribArray(GL_ATTRIBUTE_NORMAL);
+	glDisableVertexAttribArray(GL_ATTRIBUTE_UV);
+}
+
+void Mesh::glDrawTriangles()
+{
+	glDrawArrays(GL_TRIANGLES, 0, m_bufferSize);
+}
 
 bool Mesh::parseObjFile(
 	const std::string path,
