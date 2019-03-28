@@ -5,6 +5,7 @@
 #include "Mipe3DMesh.h"
 #include "Mipe3DShaderProgram.h"
 #include "Mipe3DMaterial.h"
+#include "Mipe3DTexture.h"
 
 #include <dirent.h>
 #include <nlohmann/json.hpp>
@@ -49,6 +50,7 @@ ResourceManager::ResourceManager()
 	m_typeToResourceFactoryMap["mesh"] = new ResourceFactory<Mesh>();
  	m_typeToResourceFactoryMap["shader_program"] = new ResourceFactory<ShaderProgram>();
 	m_typeToResourceFactoryMap["material"] = new ResourceFactory<Material>();
+	m_typeToResourceFactoryMap["texture"] = new ResourceFactory<Texture>();
 }
 
 ResourceManager::~ResourceManager()

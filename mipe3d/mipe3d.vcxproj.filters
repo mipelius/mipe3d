@@ -51,6 +51,9 @@
     <ClInclude Include="include\Mipe3DMaterial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Mipe3DTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Mipe3DEngine.cpp">
@@ -81,6 +84,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Mipe3DMaterial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mipe3DTexture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
