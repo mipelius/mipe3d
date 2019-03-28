@@ -44,7 +44,7 @@ static const std::string ASSETS_ROOT_DIRECTORY = ".\\assets\\";
 ResourceManager::ResourceManager()
 {
 	m_typeToResourceFactoryMap["mesh"] = new ResourceFactory<Mesh>();
-// 	m_typeToResourceFactoryMap["some_resource"] = new ResourceFactory<SomeResource>();
+ 	m_typeToResourceFactoryMap["shader_program"] = new ResourceFactory<ShaderProgram>();
 }
 
 ResourceManager::~ResourceManager()
