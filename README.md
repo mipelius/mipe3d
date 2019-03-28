@@ -1,5 +1,5 @@
 # Mipe3D
-Mipe3D is a skeletal animation demo.
+Mipe3D is a simple 3D rendering engine. The included example demonstrates Mipe3D's features.
 # Dependencies
 In order to build and run the project you need to download following libraries and put them into exact location shown below:
 * [SDL2-2.0.9](https://www.libsdl.org/release/SDL2-devel-2.0.9-VC.zip) &rarr; `path\to\mipe3d\external\SDL2-2.0.9` 
