@@ -13,7 +13,7 @@ namespace mipe3d
 class Resource;
 class IResourceFactory;
 
-class MIPE3D_API ResourceManager
+class ResourceManager
 {
 	friend class Engine;
 

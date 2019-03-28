@@ -11,13 +11,13 @@ typedef int GLsizei;
 namespace mipe3d
 {
 
-class MIPE3D_API Mesh : public Resource
+class Mesh : public Resource
 {
 friend class Renderable;
 
 public:
-	Mesh(const std::string& filePath);
-	~Mesh() override;
+	MIPE3D_API Mesh(const std::string& filePath);
+	MIPE3D_API ~Mesh() override;
 	
 protected:
 	bool loadInternal(const nlohmann::json& metaDefinition) override;

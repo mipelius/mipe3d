@@ -5,14 +5,14 @@
 namespace mipe3d
 {
 
-class MIPE3D_API IScene
+class IScene
 {
 public:
-	virtual ~IScene() {};
+	MIPE3D_API virtual ~IScene() {};
 
-	virtual bool startUp() = 0;
-	virtual bool shutDown() = 0;
-	virtual void update() = 0;
+	MIPE3D_API virtual bool startUp() = 0;
+	MIPE3D_API virtual bool shutDown() = 0;
+	MIPE3D_API virtual void update() = 0;
 };
 
 } // namespace mipe3d

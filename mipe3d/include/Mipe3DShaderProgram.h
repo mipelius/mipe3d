@@ -8,13 +8,13 @@ typedef unsigned int GLuint;
 namespace mipe3d
 {
 
-class MIPE3D_API ShaderProgram : public Resource
+class ShaderProgram : public Resource
 {
 friend class Renderable;
 
 public:
-	ShaderProgram(const std::string& filePath);
-	~ShaderProgram() override;
+	MIPE3D_API ShaderProgram(const std::string& filePath);
+	MIPE3D_API ~ShaderProgram() override;
 	
 protected:
 	bool loadInternal(const nlohmann::json& metaDefinition) override;

@@ -6,13 +6,13 @@
 namespace mipe3d
 {
 
-class MIPE3D_API Material : public Resource
+class Material : public Resource
 {
 friend class Renderable;
 
 public:
-	Material(const std::string& filePath);
-	~Material() override;
+	MIPE3D_API Material(const std::string& filePath);
+	MIPE3D_API ~Material() override;
 	
 protected:
 	bool loadInternal(const nlohmann::json& metaDefinition) override;

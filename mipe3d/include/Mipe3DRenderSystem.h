@@ -12,12 +12,12 @@ namespace mipe3d
 
 class Renderable;
 
-class MIPE3D_API RenderSystem
+class RenderSystem
 {
 	friend class Engine;
 
 public:
-	Renderable* createRenderable();
+	MIPE3D_API Renderable* createRenderable();
 
 private:
 	RenderSystem();

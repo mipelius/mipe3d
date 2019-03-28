@@ -9,17 +9,17 @@
 namespace mipe3d
 {
 
-class MIPE3D_API Resource
+class Resource
 {
 public:
-	Resource(const std::string& filePath);
-	virtual ~Resource() {}
-	bool load();
-	void unload();
+	MIPE3D_API Resource(const std::string& filePath);
+	MIPE3D_API virtual ~Resource() {}
+	MIPE3D_API bool load();
+	MIPE3D_API void unload();
 
 protected:
-	virtual bool loadInternal(const nlohmann::json& metaDefinition) = 0;
-	virtual void unloadInternal() = 0;
+	MIPE3D_API virtual bool loadInternal(const nlohmann::json& metaDefinition) = 0;
+	MIPE3D_API virtual void unloadInternal() = 0;
 
 private:
 	std::string m_filePath;

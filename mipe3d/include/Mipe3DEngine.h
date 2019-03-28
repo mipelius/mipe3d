@@ -11,14 +11,14 @@ class RenderSystem;
 class ResourceManager;
 class IScene;
 
-class MIPE3D_API Engine
+class Engine
 {
 	friend MIPE3D_API Engine& engine();
 	friend MIPE3D_API ResourceManager& resourceManager();
 	friend MIPE3D_API RenderSystem& renderSystem();
 
 public:
-	void run(IScene& scene);
+	MIPE3D_API void run(IScene& scene);
 
 private:
 	Engine();

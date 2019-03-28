@@ -6,12 +6,12 @@ namespace mipe3d
 {
 class Mesh;
 
-class MIPE3D_API Renderable
+class Renderable
 {
 friend class RenderSystem;
 
 public:
-	void setMesh(Mesh* mesh);
+	MIPE3D_API void setMesh(Mesh* mesh);
 
 private:
 	Renderable();
