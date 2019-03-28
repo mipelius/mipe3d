@@ -11,6 +11,7 @@ namespace mipe3d
 {
 
 class Resource;
+class IResourceFactory;
 
 class MIPE3D_API ResourceManager
 {
@@ -32,6 +33,7 @@ private:
 	bool createResource(const std::string& key, const std::string& fullFilePath);
 
 	std::map<std::string, Resource*> m_pathToResourceMap;
+	std::map<std::string, IResourceFactory*> m_typeToResourceFactoryMap;
 };
 
 // ---- template method definitions ----

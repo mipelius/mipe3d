@@ -1,6 +1,7 @@
 #include "Mipe3DResourceManager.h"
 #include "Mipe3DResource.h"
 #include "Mipe3DMesh.h"
+#include "Mipe3DShaderProgram.h"
 
 #include <dirent.h>
 #include <nlohmann/json.hpp>
@@ -10,19 +11,48 @@
 #include <fstream>
 #include <exception>
 
-static const std::string ASSETS_ROOT_DIRECTORY = ".\\assets\\";
-
 using json = nlohmann::json;
 
 namespace mipe3d
 {
 
+class IResourceFactory
+{
+public:
+	virtual Resource* create(const std::string& filePath) = 0;
+};
+
+template <class T>
+class ResourceFactory : public IResourceFactory
+{
+public:
+	ResourceFactory()
+	{
+		static_assert(
+			std::is_base_of<Resource, T> (),
+			"Resource factory's type T must be inherited from Resource."
+		);
+	}
+	Resource* create(const std::string& filePath)
+	{
+		return new T(filePath);
+	}
+};
+
+static const std::string ASSETS_ROOT_DIRECTORY = ".\\assets\\";
+
 ResourceManager::ResourceManager()
 {
+	m_typeToResourceFactoryMap["mesh"] = new ResourceFactory<Mesh>();
+// 	m_typeToResourceFactoryMap["some_resource"] = new ResourceFactory<SomeResource>();
 }
 
 ResourceManager::~ResourceManager()
 {
+for (auto pair : m_typeToResourceFactoryMap)
+{
+	delete pair.second;
+}
 }
 
 bool ResourceManager::startUp()
@@ -35,12 +65,12 @@ bool ResourceManager::startUp()
 		std::cout << "Directory '" << ASSETS_ROOT_DIRECTORY << "' is missing!";
 		return false;
 	}
-	while (entry = readdir(dir)) 
+	while (entry = readdir(dir))
 	{
 		std::string fileName(entry->d_name);
-			
+
 		size_t fileExtensionPosition = fileName.size() >= 5 ? fileName.size() - 5 : 0;
-			
+
 		if (fileName.substr(fileExtensionPosition) == ".meta")
 		{
 			auto key = fileName.substr(0, fileExtensionPosition);
@@ -53,7 +83,7 @@ bool ResourceManager::startUp()
 		}
 	}
 	closedir(dir);
-	
+
 	// load all the created resources
 	for (auto pathToResourcePair : m_pathToResourceMap)
 	{
@@ -78,6 +108,7 @@ bool ResourceManager::shutDown()
 
 bool ResourceManager::createResource(const std::string& key, const std::string& fullFilePath)
 {
+	// parse json
 	std::ifstream filestream(fullFilePath, std::ifstream::in);
 	json resourceMetaJson;
 
@@ -87,52 +118,56 @@ bool ResourceManager::createResource(const std::string& key, const std::string& 
 	}
 	catch (json::parse_error)
 	{
-		std::cout << 
-			"Corrupted .meta, should be in json format: " << 
-			fullFilePath << 
+		std::cout <<
+			"Corrupted .meta, should be in json format: " <<
+			fullFilePath <<
 			std::endl;
-		
+
 		return false;
 	}
 	catch (...)
 	{
-		std::cout << 
-			"Error occured during parsing the file, " << 
-			"fullFilePath" << 
+		std::cout <<
+			"Error occured during parsing the file, " <<
+			"fullFilePath" <<
 			std::endl;
-		
-		return false;
-	}
-		
-	if (resourceMetaJson.find("type") == resourceMetaJson.end())
-	{
-		std::cout << 
-			"Resource must specify \"type\": " << 
-			fullFilePath << 
-			std::endl;
-		
+
 		return false;
 	}
 
-	if (resourceMetaJson["type"] == "mesh")
+	// check type
+	const char* TYPE_FIELD = "type";
+
+	if (resourceMetaJson.find(TYPE_FIELD) == resourceMetaJson.end())
 	{
-		Mesh* mesh = new Mesh(fullFilePath);
-		m_pathToResourceMap[key] = mesh;
-		return true;
+		std::cout <<
+			"Resource must specify \"" << TYPE_FIELD << "\": " <<
+			fullFilePath <<
+			std::endl;
+
+		return false;
 	}
-	// else if (resourceMetaJson["type"] == "texture") { /* ... */ }
-	// else if ...
-	else
+
+	// check if type is supported
+	auto typeString = resourceMetaJson[TYPE_FIELD].get<std::string>();
+
+	if (m_typeToResourceFactoryMap.find(typeString) == m_typeToResourceFactoryMap.end())
 	{
 		std::cout <<
 			"Unsupported resource type: \"" <<
-			resourceMetaJson["type"] <<
+			typeString <<
 			"\", "
 			<< fullFilePath
 			<< std::endl;
 
 		return false;
 	}
+
+	// create and store resource
+	auto factory = m_typeToResourceFactoryMap[typeString];
+	auto resource = factory->create(fullFilePath);
+	m_pathToResourceMap[key] = resource;
+	return true;
 }
 
 } // namespace mipe3d
