@@ -1,4 +1,5 @@
 #include "Mipe3DRenderSystem.h"
+#include "Mipe3DRenderable.h"
 
 #include <SDL.h>
 #include <gl\glew.h>
@@ -10,8 +11,22 @@
 namespace mipe3d
 {
 
+Renderable* RenderSystem::createRenderable()
+{
+	auto renderable = new Renderable();
+	m_renderables.push_back(renderable);
+	return renderable;
+}
+
 RenderSystem::RenderSystem() { }
-RenderSystem::~RenderSystem() { }
+
+RenderSystem::~RenderSystem() 
+{ 
+	for (auto renderable : m_renderables)
+	{
+		delete renderable;
+	}
+}
 
 bool RenderSystem::startUp()
 {
@@ -21,10 +36,12 @@ bool RenderSystem::startUp()
 		return false;
 	}
 
+	// Set hints for window & context
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
+	// Create Window
 	m_window = SDL_CreateWindow(
 		"Mipe3D",
 		SDL_WINDOWPOS_UNDEFINED,
@@ -40,7 +57,7 @@ bool RenderSystem::startUp()
 		return false;
 	}
 
-	// create context
+	// Create context
 	m_glContext = SDL_GL_CreateContext(m_window);
 
 	if (m_glContext == NULL)
@@ -49,6 +66,7 @@ bool RenderSystem::startUp()
 		return false;
 	}
 
+	// Init glew
 	glewExperimental = GL_TRUE;
 	GLenum glewError = glewInit();
 	if (glewError != GLEW_OK)
@@ -56,10 +74,16 @@ bool RenderSystem::startUp()
 		std::cout << "GLEW initialization failed! GLEW error: " << glewGetErrorString(glewError) << std::endl;
 	}
 
+	// Enable vsync if possible
 	if (SDL_GL_SetSwapInterval(1) < 0)
 	{
 		std::cout << "Warning: Unable to set VSync! SDL error: " << SDL_GetError() << std::endl;
 	}
+
+	// Set openGL defaults 
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
 
 	return true;
 }
@@ -74,6 +98,15 @@ bool RenderSystem::shutDown()
 
 void RenderSystem::update()
 {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// just a dummy implemetation,
+	// missing to-world and to-view transformations
+	for (auto renderable : m_renderables)
+	{
+		renderable->render();
+	}
+
 	SDL_GL_SwapWindow(m_window);
 }
 
