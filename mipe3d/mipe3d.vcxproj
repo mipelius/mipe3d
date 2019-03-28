@@ -26,6 +26,8 @@
     <ClInclude Include="include\Mipe3DRenderSystem.h" />
     <ClInclude Include="include\Mipe3DResource.h" />
     <ClInclude Include="include\Mipe3DResourceManager.h" />
+    <ClInclude Include="include\Mipe3DRenderable.h" />
+    <ClInclude Include="include\Mipe3DShaderProgram.h" />
     <ClInclude Include="include\stdafx.h" />
     <ClInclude Include="include\targetver.h" />
   </ItemGroup>
@@ -33,9 +35,11 @@
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\Mipe3DEngine.cpp" />
     <ClCompile Include="src\Mipe3DMesh.cpp" />
+    <ClCompile Include="src\Mipe3DRenderable.cpp" />
     <ClCompile Include="src\Mipe3DRenderSystem.cpp" />
     <ClCompile Include="src\Mipe3DResource.cpp" />
     <ClCompile Include="src\Mipe3DResourceManager.cpp" />
+    <ClCompile Include="src\Mipe3DShaderProgram.cpp" />
     <ClCompile Include="src\stdafx.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
