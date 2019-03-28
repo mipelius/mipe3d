@@ -49,6 +49,7 @@ bool Engine::startUp()
 	{
 		return false;
 	}
+	return true;
 }
 
 bool Engine::shutDown()
