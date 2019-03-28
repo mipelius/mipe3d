@@ -1,4 +1,6 @@
 #include "Mipe3DResourceManager.h"
+
+#include "Mipe3DEngine.h"
 #include "Mipe3DResource.h"
 #include "Mipe3DMesh.h"
 #include "Mipe3DShaderProgram.h"
@@ -170,6 +172,11 @@ bool ResourceManager::createResource(const std::string& key, const std::string& 
 	auto resource = factory->create(fullFilePath);
 	m_pathToResourceMap[key] = resource;
 	return true;
+}
+
+ResourceManager& resourceManager()
+{
+	return *(engine().m_resourceManager);
 }
 
 } // namespace mipe3d

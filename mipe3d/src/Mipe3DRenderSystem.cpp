@@ -1,4 +1,5 @@
 #include "Mipe3DRenderSystem.h"
+#include "Mipe3DEngine.h"
 #include "Mipe3DRenderable.h"
 
 #include <SDL.h>
@@ -108,6 +109,11 @@ void RenderSystem::update()
 	}
 
 	SDL_GL_SwapWindow(m_window);
+}
+
+RenderSystem& renderSystem()
+{
+	return *(engine().m_renderSystem);
 }
 
 } // namespace mipe3d

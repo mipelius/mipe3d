@@ -84,14 +84,4 @@ Engine& engine()
 	return engine;
 }
 
-ResourceManager& resourceManager()
-{
-	return *(engine().m_resourceManager);
-}
-
-RenderSystem& renderSystem()
-{
-	return *(engine().m_renderSystem);
-}
-
 } // namespace mipe3d

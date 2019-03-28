@@ -49,4 +49,8 @@ T* ResourceManager::get(const std::string& resourcePath)
 	return dynamic_cast<T*>(it->second);
 }
 
+// ---- singleton accessor ----
+
+MIPE3D_API ResourceManager& resourceManager();
+
 } // namespace mipe3d

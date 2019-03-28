@@ -36,7 +36,5 @@ private:
 };
 
 MIPE3D_API Engine& engine();
-MIPE3D_API ResourceManager& resourceManager();
-MIPE3D_API RenderSystem& renderSystem();
 
 } // namespace mipe3d

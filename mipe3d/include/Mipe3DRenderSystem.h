@@ -37,4 +37,8 @@ private:
 	static const int WINDOW_HEIGHT = 768;
 };
 
+// ---- singleton accessor ----
+
+MIPE3D_API RenderSystem& renderSystem();
+
 } // namespace mipe3d
