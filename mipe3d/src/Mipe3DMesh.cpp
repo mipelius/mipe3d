@@ -58,7 +58,7 @@ bool Mesh::loadInternal(const nlohmann::json& metaDefinition)
 		return false;
 	}
 
-	m_bufferSize = vertices.size();
+	m_bufferSize = static_cast<GLsizei>(vertices.size());
 
 	glGenVertexArrays(1, &m_vertexArrayId);
 	glBindVertexArray(m_vertexArrayId);
