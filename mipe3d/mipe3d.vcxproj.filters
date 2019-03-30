@@ -54,6 +54,9 @@
     <ClInclude Include="include\Mipe3DTexture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Mipe3DLog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Mipe3DEngine.cpp">
