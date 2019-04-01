@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\apidef.h" />
+    <ClInclude Include="include\Mipe3DJsonUtil.h" />
     <ClInclude Include="include\Mipe3DEngine.h" />
     <ClInclude Include="include\Mipe3DIScene.h" />
     <ClInclude Include="include\Mipe3DLog.h" />
@@ -36,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp" />
+    <ClCompile Include="src\Mipe3DJsonUtil.cpp" />
     <ClCompile Include="src\Mipe3DEngine.cpp" />
     <ClCompile Include="src\Mipe3DMaterial.cpp" />
     <ClCompile Include="src\Mipe3DMesh.cpp" />
