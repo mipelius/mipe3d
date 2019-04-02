@@ -2,6 +2,7 @@
 
 #include "apidef.h"
 #include "Mipe3DResource.h"
+
 #include <vec3.hpp>
 #include <vec2.hpp>
 

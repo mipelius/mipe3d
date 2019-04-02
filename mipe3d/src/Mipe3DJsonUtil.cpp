@@ -4,7 +4,6 @@
 #include <nlohmann/json.hpp>
 #include <fstream>
 #include <string>
-#include <map>
 
 namespace mipe3d
 {

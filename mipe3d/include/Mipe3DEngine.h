@@ -2,8 +2,6 @@
 
 #include "apidef.h"
 
-#include <memory>
-
 namespace mipe3d
 {
 

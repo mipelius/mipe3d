@@ -5,8 +5,6 @@
 #include <string>
 #include <map>
 
-#include "Mipe3DMesh.h"
-
 namespace mipe3d
 {
 

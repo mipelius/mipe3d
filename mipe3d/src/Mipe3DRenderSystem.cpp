@@ -8,7 +8,6 @@
 #include <SDL_opengl.h>
 #include <gl\glu.h>
 
-// TODO REMOVE
 #include <string>
 
 namespace mipe3d
