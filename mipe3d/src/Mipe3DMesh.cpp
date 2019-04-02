@@ -1,4 +1,6 @@
 #include "Mipe3DMesh.h"
+#include "Mipe3DJsonUtil.h"
+#include "Mipe3DLog.h"
 
 #include <GL/glew.h>
 #include <vec3.hpp>
@@ -6,7 +8,6 @@
 
 #include <fstream>
 #include <nlohmann/json.hpp>
-#include <iostream>
 
 namespace mipe3d
 {
@@ -15,39 +16,28 @@ Mesh::Mesh(const std::string& filePath) : Resource(filePath) { }
 
 Mesh::~Mesh()
 {
-
 }
 
 bool Mesh::loadInternal(const nlohmann::json& metaDefinition)
 {
-	const char* SOURCE_FIELD = "source";
+	// parse source path
+	JsonValueParserStatus status;
 
-	if (metaDefinition.find(SOURCE_FIELD) == metaDefinition.end())
+	auto sourcePath = parseStringFromJson(metaDefinition, "source", status);
+
+	if (status.error != JsonValueParserError::NONE)
 	{
-		std::cout << 
-			"Loading mesh failed, no \"source\" specified." << 
-			std::endl;
-		
-		return false;
-	}
-	
-	auto jsonSource = metaDefinition[SOURCE_FIELD];
-
-	if (!jsonSource.is_string())
-	{
-		std::cout <<
-			"Loading mesh failed, source must be a string value." <<
-			std::endl;
-
+		MIPE3D_LOG_ERROR(getFilePath() + ", " + status.errorMessage);
 		return false;
 	}
 
+	// parse obj file
 	std::vector<glm::vec3> vertices;
 	std::vector<glm::vec3> normals;
 	std::vector<glm::vec2> uvs;
 
 	bool objWasLoadedSuccessfully = parseObjFile(
-		jsonSource.get<std::string>(),
+		sourcePath,
 		vertices,		
 		normals,
 		uvs
@@ -58,12 +48,12 @@ bool Mesh::loadInternal(const nlohmann::json& metaDefinition)
 		return false;
 	}
 
+	// generate gl buffers and make data bindings
 	m_bufferSize = static_cast<GLsizei>(vertices.size());
 
 	glGenVertexArrays(1, &m_vertexArrayId);
 	glBindVertexArray(m_vertexArrayId);
 
-	// Bind data to buffers
 	glGenBuffers(1, &m_vertexBufferId);
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferId);
 	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
