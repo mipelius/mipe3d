@@ -14,27 +14,27 @@ class Renderable;
 
 class RenderSystem
 {
-	friend class Engine;
+    friend class Engine;
 
 public:
-	MIPE3D_API Renderable* createRenderable();
+    MIPE3D_API Renderable* createRenderable();
 
 private:
-	RenderSystem();
-	virtual ~RenderSystem();
-	RenderSystem(const RenderSystem& other) = delete;
-	RenderSystem& operator=(const RenderSystem& other) = delete;
+    RenderSystem();
+    virtual ~RenderSystem();
+    RenderSystem(const RenderSystem& other) = delete;
+    RenderSystem& operator=(const RenderSystem& other) = delete;
 
-	bool startUp();
-	bool shutDown();
-	void update();
+    bool startUp();
+    bool shutDown();
+    void update();
 
-	SDL_Window* m_window;
-	SDL_GLContext m_glContext;
-	std::list<Renderable*> m_renderables;
+    SDL_Window* m_window;
+    SDL_GLContext m_glContext;
+    std::list<Renderable*> m_renderables;
 
-	static const int WINDOW_WIDTH = 1024;
-	static const int WINDOW_HEIGHT = 768;
+    static const int WINDOW_WIDTH = 1024;
+    static const int WINDOW_HEIGHT = 768;
 };
 
 // ---- singleton accessor ----

@@ -15,7 +15,7 @@ Texture::~Texture() { }
 
 bool Texture::loadInternal(const nlohmann::json& metaDefinition)
 {
-	return true;
+    return true;
 }
 
 void Texture::unloadInternal()

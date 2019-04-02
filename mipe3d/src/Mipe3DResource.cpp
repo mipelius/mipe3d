@@ -11,40 +11,40 @@ namespace mipe3d
 
 Resource::Resource(const std::string& filePath)
 {
-	m_filePath = filePath;
+    m_filePath = filePath;
 }
 
 bool Resource::load()
 {
-	unload();
+    unload();
 
-	json metaDefinition;
-	
-	if (!loadJson(m_filePath, metaDefinition))
-	{
-		return false;
-	}
-	
-	if (!loadInternal(metaDefinition))
-	{
-		return false;
-	}
+    json metaDefinition;
+    
+    if (!loadJson(m_filePath, metaDefinition))
+    {
+        return false;
+    }
+    
+    if (!loadInternal(metaDefinition))
+    {
+        return false;
+    }
 
-	m_isLoaded = true;
-	return true;
+    m_isLoaded = true;
+    return true;
 }
 
 void Resource::unload()
 {
-	if (m_isLoaded)
-	{
-		unloadInternal();
-	}
+    if (m_isLoaded)
+    {
+        unloadInternal();
+    }
 }
 
 const std::string& Resource::getFilePath()
 {
-	return m_filePath;
+    return m_filePath;
 }
 
 

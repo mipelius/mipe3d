@@ -11,15 +11,15 @@ class Renderable
 friend class RenderSystem;
 
 public:
-	MIPE3D_API void setMesh(Mesh* mesh);
+    MIPE3D_API void setMesh(Mesh* mesh);
 
 private:
-	Renderable();
-	virtual ~Renderable() {}
+    Renderable();
+    virtual ~Renderable() {}
 
-	void render();
+    void render();
 
-	Mesh* m_mesh = nullptr;
+    Mesh* m_mesh = nullptr;
 };
 
 } // namespace mipe3d
