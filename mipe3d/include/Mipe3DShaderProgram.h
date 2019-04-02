@@ -4,6 +4,7 @@
 #include "Mipe3DResource.h"
 
 typedef unsigned int GLuint;
+typedef unsigned int GLenum;
 
 namespace mipe3d
 {
@@ -21,9 +22,18 @@ protected:
 	void unloadInternal() override;
 
 private:
+	bool compileShader(
+		const std::string& filePath,
+		GLenum shaderType,
+		GLuint& shaderIdOut);
+	bool linkProgram(
+		GLuint vertexShaderId, 
+		GLuint fragmentShaderId, 
+		GLuint& idOut);
+
 	void glUse();
 	void glUnuse();
-
+	
 	GLuint m_programId = 0;
 };
 
