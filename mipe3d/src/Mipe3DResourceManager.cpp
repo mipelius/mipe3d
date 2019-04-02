@@ -6,11 +6,12 @@
 #include "Mipe3DShaderProgram.h"
 #include "Mipe3DMaterial.h"
 #include "Mipe3DTexture.h"
+#include "Mipe3DJsonUtil.h"
+#include "Mipe3DLog.h"
 
 #include <dirent.h>
 #include <nlohmann/json.hpp>
 
-#include <iostream>
 #include <algorithm>
 #include <fstream>
 #include <exception>
@@ -49,8 +50,8 @@ ResourceManager::ResourceManager()
 {
 	m_typeToResourceFactoryMap["mesh"] = new ResourceFactory<Mesh>();
  	m_typeToResourceFactoryMap["shader_program"] = new ResourceFactory<ShaderProgram>();
-	m_typeToResourceFactoryMap["material"] = new ResourceFactory<Material>();
 	m_typeToResourceFactoryMap["texture"] = new ResourceFactory<Texture>();
+	m_typeToResourceFactoryMap["material"] = new ResourceFactory<Material>();
 }
 
 ResourceManager::~ResourceManager()
@@ -68,7 +69,8 @@ bool ResourceManager::startUp()
 	struct dirent *entry;
 	if (!(dir = opendir(ASSETS_ROOT_DIRECTORY.c_str())))
 	{
-		std::cout << "Directory '" << ASSETS_ROOT_DIRECTORY << "' is missing!";
+		MIPE3D_LOG_ERROR(
+			std::string("Directory \"") + ASSETS_ROOT_DIRECTORY + "\" is missing!");
 		return false;
 	}
 	while (entry = readdir(dir))
@@ -114,63 +116,39 @@ bool ResourceManager::shutDown()
 
 bool ResourceManager::createResource(const std::string& key, const std::string& fullFilePath)
 {
-	// parse json
-	std::ifstream filestream(fullFilePath, std::ifstream::in);
+	// load json
 	json resourceMetaJson;
 
-	try
+	if (!loadJson(fullFilePath, resourceMetaJson))
 	{
-		filestream >> resourceMetaJson;
-	}
-	catch (json::parse_error)
-	{
-		std::cout <<
-			"Corrupted .meta, should be in json format: " <<
-			fullFilePath <<
-			std::endl;
-
 		return false;
 	}
-	catch (...)
-	{
-		std::cout <<
-			"Error occured during parsing the file, " <<
-			"fullFilePath" <<
-			std::endl;
+	
+	JsonValueParserStatus status;
 
+	// parse typename
+	auto typeName = parseStringFromJson(resourceMetaJson, "type", status);
+
+	if (status.error != JsonValueParserError::NONE)
+	{
+		MIPE3D_LOG_ERROR(status.errorMessage);
 		return false;
 	}
-
-	// check type
-	const char* TYPE_FIELD = "type";
-
-	if (resourceMetaJson.find(TYPE_FIELD) == resourceMetaJson.end())
-	{
-		std::cout <<
-			"Resource must specify \"" << TYPE_FIELD << "\": " <<
-			fullFilePath <<
-			std::endl;
-
-		return false;
-	}
-
+	
 	// check if type is supported
-	auto typeString = resourceMetaJson[TYPE_FIELD].get<std::string>();
-
-	if (m_typeToResourceFactoryMap.find(typeString) == m_typeToResourceFactoryMap.end())
+	if (m_typeToResourceFactoryMap.find(typeName) == m_typeToResourceFactoryMap.end())
 	{
-		std::cout <<
-			"Unsupported resource type: \"" <<
-			typeString <<
-			"\", "
-			<< fullFilePath
-			<< std::endl;
+		MIPE3D_LOG_ERROR(
+			fullFilePath +
+			", Resource type: \"" +
+			typeName +
+			"\" is not supported");
 
 		return false;
 	}
 
 	// create and store resource
-	auto factory = m_typeToResourceFactoryMap[typeString];
+	auto factory = m_typeToResourceFactoryMap[typeName];
 	auto resource = factory->create(fullFilePath);
 	m_pathToResourceMap[key] = resource;
 	return true;

@@ -1,8 +1,9 @@
 #include "Mipe3DResource.h"
+#include "Mipe3DJsonUtil.h"
 
 #include <nlohmann/json.hpp>
 #include <fstream>
-#include <iostream>
+
 using json = nlohmann::json;
 
 namespace mipe3d
@@ -18,15 +19,9 @@ bool Resource::load()
 	unload();
 
 	json metaDefinition;
-	std::ifstream filestream(m_filePath, std::ifstream::in);
-
-	try
+	
+	if (!loadJson(m_filePath, metaDefinition))
 	{
-		filestream >> metaDefinition;
-	}
-	catch(...)
-	{
-		std::cout << "Failed to parse .meta: " << m_filePath << std::endl;
 		return false;
 	}
 	
@@ -45,6 +40,11 @@ void Resource::unload()
 	{
 		unloadInternal();
 	}
+}
+
+const std::string& Resource::getFilePath()
+{
+	return m_filePath;
 }
 
 

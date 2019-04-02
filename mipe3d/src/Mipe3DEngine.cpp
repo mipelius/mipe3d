@@ -5,8 +5,6 @@
 
 #include <SDL.h>
 
-#include <iostream>
-
 namespace mipe3d
 {
 

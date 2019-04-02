@@ -1,13 +1,15 @@
 #include "Mipe3DRenderSystem.h"
 #include "Mipe3DEngine.h"
 #include "Mipe3DRenderable.h"
+#include "Mipe3DLog.h"
 
 #include <SDL.h>
 #include <gl\glew.h>
 #include <SDL_opengl.h>
 #include <gl\glu.h>
 
-#include <iostream>
+// TODO REMOVE
+#include <string>
 
 namespace mipe3d
 {
@@ -33,7 +35,9 @@ bool RenderSystem::startUp()
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
-		std::cout << "Unable to initialize SDL video! SDL error: " << SDL_GetError() << std::endl;
+		MIPE3D_LOG(
+			std::string("Unable to initialize SDL video! SDL error: ") + 
+			SDL_GetError());
 		return false;
 	}
 
@@ -54,7 +58,9 @@ bool RenderSystem::startUp()
 
 	if (m_window == NULL)
 	{
-		std::cout << "Unable to create window! SDL error: " << SDL_GetError() << std::endl;
+		MIPE3D_LOG(
+			std::string("Unable to create window! SDL error: ") +
+			SDL_GetError());
 		return false;
 	}
 
@@ -63,22 +69,33 @@ bool RenderSystem::startUp()
 
 	if (m_glContext == NULL)
 	{
-		std::cout << "Unable to create OpenGL context! SDL error: " << SDL_GetError() << std::endl;
+		MIPE3D_LOG_ERROR(
+			std::string("Unable to create OpenGL context! SDL error: ") + 
+			SDL_GetError());
 		return false;
 	}
 
 	// Init glew
 	glewExperimental = GL_TRUE;
 	GLenum glewError = glewInit();
+
 	if (glewError != GLEW_OK)
 	{
-		std::cout << "GLEW initialization failed! GLEW error: " << glewGetErrorString(glewError) << std::endl;
+		// I guess there is no easier way to get just a normal c-string
+		const GLubyte* glewErrorString = glewGetErrorString(glewError);
+		const char* errorString = reinterpret_cast<const char*>(glewErrorString);
+
+		MIPE3D_LOG_ERROR(
+			std::string("GLEW initialization failed! GLEW error: ") +
+			errorString);
 	}
 
 	// Enable vsync if possible
 	if (SDL_GL_SetSwapInterval(1) < 0)
 	{
-		std::cout << "Warning: Unable to set VSync! SDL error: " << SDL_GetError() << std::endl;
+		MIPE3D_LOG_WARNING(
+			std::string("Unable to set VSync! SDL error: ") +
+			SDL_GetError());
 	}
 
 	// Set openGL defaults 
