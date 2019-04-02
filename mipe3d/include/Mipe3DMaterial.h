@@ -6,6 +6,9 @@
 namespace mipe3d
 {
 
+class ShaderProgram;
+class Texture;
+
 class Material : public Resource
 {
 friend class Renderable;
@@ -19,7 +22,11 @@ protected:
 	void unloadInternal() override;
 
 private:
-	// ...
+	bool parseShaderProgram(const nlohmann::json& metaDefinition);
+	bool parseTexture(const nlohmann::json& metaDefinition);
+
+	ShaderProgram* m_shaderProgram = nullptr;
+	Texture* m_texture = nullptr;
 };
 
 } // namespace mipe3d
