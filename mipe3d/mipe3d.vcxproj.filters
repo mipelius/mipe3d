@@ -60,6 +60,12 @@
     <ClInclude Include="include\Mipe3DJsonUtil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Mipe3DTransform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Mipe3DCamera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Mipe3DEngine.cpp">
@@ -96,6 +102,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Mipe3DJsonUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mipe3DTransform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mipe3DCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mipe3DLog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

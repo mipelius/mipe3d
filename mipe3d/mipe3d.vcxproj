@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\apidef.h" />
+    <ClInclude Include="include\Mipe3DCamera.h" />
     <ClInclude Include="include\Mipe3DJsonUtil.h" />
     <ClInclude Include="include\Mipe3DEngine.h" />
     <ClInclude Include="include\Mipe3DIScene.h" />
@@ -32,13 +33,16 @@
     <ClInclude Include="include\Mipe3DRenderable.h" />
     <ClInclude Include="include\Mipe3DShaderProgram.h" />
     <ClInclude Include="include\Mipe3DTexture.h" />
+    <ClInclude Include="include\Mipe3DTransform.h" />
     <ClInclude Include="include\stdafx.h" />
     <ClInclude Include="include\targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp" />
+    <ClCompile Include="src\Mipe3DCamera.cpp" />
     <ClCompile Include="src\Mipe3DJsonUtil.cpp" />
     <ClCompile Include="src\Mipe3DEngine.cpp" />
+    <ClCompile Include="src\Mipe3DLog.cpp" />
     <ClCompile Include="src\Mipe3DMaterial.cpp" />
     <ClCompile Include="src\Mipe3DMesh.cpp" />
     <ClCompile Include="src\Mipe3DRenderable.cpp" />
@@ -47,6 +51,7 @@
     <ClCompile Include="src\Mipe3DResourceManager.cpp" />
     <ClCompile Include="src\Mipe3DShaderProgram.cpp" />
     <ClCompile Include="src\Mipe3DTexture.cpp" />
+    <ClCompile Include="src\Mipe3DTransform.cpp" />
     <ClCompile Include="src\stdafx.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
