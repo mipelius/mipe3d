@@ -42,4 +42,4 @@ void Transform::setScale(const glm::vec3 &scale)
     m_scale = scale;
 }
 
-} // namespace Ape
+} // namespace mipe3d
