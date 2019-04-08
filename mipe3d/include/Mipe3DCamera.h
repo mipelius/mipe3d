@@ -3,6 +3,7 @@
 #include "apidef.h"
 #include <vec3.hpp>
 #include <mat4x4.hpp>
+#include <gtc/quaternion.hpp>
 
 namespace mipe3d
 {
@@ -21,7 +22,7 @@ public:
 
     MIPE3D_API const glm::vec3& getPosition();
     MIPE3D_API void setPosition(const glm::vec3& position);
-    MIPE3D_API const glm::vec3& getEulerAngles();
+    MIPE3D_API glm::vec3 getEulerAngles();
     MIPE3D_API void setEulerAngles(const glm::vec3& eulerAngles);
 
     MIPE3D_API glm::mat4x4 getProjectionMatrix();
@@ -31,15 +32,12 @@ private:
     Camera();
     ~Camera();
 
-    float m_fieldOfView;
-    float m_near;
-    float m_far;
+    float m_fieldOfView = glm::radians(45.0f);
+    float m_near = 0.1f;
+    float m_far = 100.0f;
 
-    glm::vec3 m_position;
-    
-    // quaternion would be better choice for rotations
-    // but for simplicity we use euler angles for now
-    glm::vec3 m_rotation;
+    glm::vec3 m_position = glm::vec3(0.0f, 0.0f, 0.0f);
+    glm::quat m_rotation = glm::quat();
 };
 
 // ---- singleton accessor ----
