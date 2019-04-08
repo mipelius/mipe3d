@@ -2,6 +2,8 @@
 
 #include "apidef.h"
 #include "Mipe3DResource.h"
+#include <mat4x4.hpp>
+
 
 typedef unsigned int GLuint;
 typedef unsigned int GLenum;
@@ -34,7 +36,18 @@ private:
     void glUse();
     void glUnuse();
     
+    void bindModelMatrix(const glm::mat4x4& modelMatrix);
+    void bindViewMatrix(const glm::mat4x4& viewMatrix);
+    void bindProjectionMatrix(const glm::mat4x4& projectionMatrix);
+
     GLuint m_programId = 0;
+    GLuint m_uniformModelMatrixId = 0;
+    GLuint m_uniformViewMatrixId = 0;
+    GLuint m_uniformProjectionMatrixId = 0;
+
+    const std::string UNIFORM_MODEL_MATRIX = "u_modelMatrix";
+    const std::string UNIFORM_VIEW_MATRIX = "u_viewMatrix";
+    const std::string UNIFORM_PROJECTION_MATRIX = "u_projectionMatrix";
 };
 
 } // namespace mipe3d

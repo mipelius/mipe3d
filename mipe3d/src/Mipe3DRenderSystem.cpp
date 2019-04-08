@@ -117,8 +117,6 @@ void RenderSystem::update()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    // just a dummy implemetation,
-    // missing to-world + projection transformations
     for (auto renderable : m_renderables)
     {
         renderable->render();

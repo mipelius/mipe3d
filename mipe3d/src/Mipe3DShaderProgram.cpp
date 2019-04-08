@@ -68,8 +68,15 @@ bool ShaderProgram::loadInternal(const nlohmann::json& metaDefinition)
         return false;
     }
 
-    // success -> store program id
+    // success -> store program id 
+    //            and set uniform locations
     m_programId = programId;
+    m_uniformModelMatrixId = glGetUniformLocation(
+        m_programId, UNIFORM_MODEL_MATRIX.c_str());
+    m_uniformViewMatrixId = glGetUniformLocation(
+        m_programId, UNIFORM_VIEW_MATRIX.c_str());
+    m_uniformProjectionMatrixId = glGetUniformLocation(
+        m_programId, UNIFORM_PROJECTION_MATRIX.c_str());
 
     // clean up
     glDetachShader(programId, vertexShaderId);
@@ -88,6 +95,24 @@ void ShaderProgram::unloadInternal()
 void ShaderProgram::glUse()
 {
     glUseProgram(m_programId);
+}
+
+void ShaderProgram::bindModelMatrix(const glm::mat4x4& modelMatrix)
+{
+    glUniformMatrix4fv(
+        m_uniformModelMatrixId, 1, GL_FALSE, &modelMatrix[0][0]);
+}
+
+void ShaderProgram::bindViewMatrix(const glm::mat4x4& viewMatrix)
+{
+    glUniformMatrix4fv(
+        m_uniformViewMatrixId, 1, GL_FALSE, &viewMatrix[0][0]);
+}
+
+void ShaderProgram::bindProjectionMatrix(const glm::mat4x4& projectionMatrix)
+{
+    glUniformMatrix4fv(
+        m_uniformProjectionMatrixId, 1, GL_FALSE, &projectionMatrix[0][0]);
 }
 
 void ShaderProgram::glUnuse()

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "apidef.h"
+#include "Mipe3DTransform.h"
 
 namespace mipe3d
 {
@@ -14,6 +15,7 @@ friend class RenderSystem;
 public:
     MIPE3D_API void setMesh(Mesh* mesh);
     MIPE3D_API void setMaterial(Material* material);
+    MIPE3D_API Transform& getTransform();
 
 private:
     Renderable();
@@ -21,6 +23,7 @@ private:
 
     void render();
 
+    Transform m_transform;
     Mesh* m_mesh = nullptr;
     Material* m_material = nullptr;
 };
