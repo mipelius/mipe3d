@@ -7,6 +7,7 @@
 #include <vec2.hpp>
 
 #include <fstream>
+#include <sstream>
 #include <nlohmann/json.hpp>
 
 namespace mipe3d
@@ -111,22 +112,101 @@ bool Mesh::parseObjFile(
     std::vector<glm::vec3> & outNormals,
     std::vector<glm::vec2> & outUvs)
 {
-    // NOTE: this is just a dummy implementation for now
-    outVertices = {
-        { -1.0f, -1.0f, 0.0f },
-        { 1.0f, -1.0f, 0.0f },
-        { 0.0f,  1.0f, 0.0f },
-    };
-    outNormals = {
-        { 0.0f, 0.0f, 1.0f },
-        { 0.0f, 0.0f, 1.0f },
-        { 0.0f, 0.0f, 1.0f },
-    };
-    outUvs = {
-        { 0.0f, 0.0f },
-        { 1.0f, 0.0f },
-        { 0.0f, 1.0f },
-    };
+    // [1] --- open file stream
+    std::ifstream filestream(path, std::ios::in);
+    
+    if (!filestream.is_open())
+    {
+        MIPE3D_LOG_ERROR(
+            getFilePath() +
+            ", Could not read file \"" +
+            path +
+            "\"");
+        
+        return false;
+    }
+
+    // [2] --- read mesh data into temporary vectors
+    std::vector<unsigned int> vertexIndices, uvIndices, normalIndices;
+    std::vector<glm::vec3> tempVertices;
+    std::vector<glm::vec2> tempUvs;
+    std::vector<glm::vec3> tempNormals;
+
+    std::string line;
+    while (std::getline(filestream, line))
+    {
+        std::stringstream linestream(line);
+
+        std::string lineHeader;
+        linestream >> lineHeader;
+
+        if (lineHeader.empty())
+        {
+            continue;
+        }
+        else if (lineHeader == "v")
+        {
+            glm::vec3 vertex;
+            linestream >> vertex.x >> vertex.y >> vertex.z;
+
+            tempVertices.push_back(vertex);
+        }
+        else if (lineHeader == "vn")
+        {
+            glm::vec3 normal;
+            linestream >> normal.x >> normal.y >> normal.z;
+
+            tempNormals.push_back(normal);
+        }
+        else if (lineHeader == "vt")
+        {
+            glm::vec2 uv;
+            linestream >> uv.x >> uv.y;
+
+            tempUvs.push_back(uv);
+        }
+        else if (lineHeader == "f")
+        {
+            std::string indexString;
+            std::array<std::string, 3> faceTokens;
+            std::array<unsigned int, 3> indices;
+
+            linestream >> faceTokens[0] >> faceTokens[1] >> faceTokens[2];
+
+            // for each faceToken, read slash separated indices
+            for (const auto& faceToken : faceTokens)
+            {
+                std::stringstream faceTokenStream(faceToken);
+                 
+                for (auto& index : indices)
+                {
+                    std::getline(faceTokenStream, indexString, '/');
+                    index = std::stoul(indexString);
+                }
+
+                vertexIndices.push_back(indices[0]);
+                uvIndices.push_back(indices[1]);
+                normalIndices.push_back(indices[2]);
+            }
+        }
+    }
+
+    // [3] --- extract temporary data into out-vectors
+    for (unsigned int i = 0; i < vertexIndices.size(); i++)
+    {
+        unsigned int vertexIndex = vertexIndices[i] - 1;
+        unsigned int uvIndex = uvIndices[i] - 1;
+        unsigned int normalIndex = normalIndices[i] - 1;
+
+        glm::vec3 vertex = tempVertices[vertexIndex];
+        glm::vec2 uv = tempUvs[uvIndex];
+        glm::vec3 normal = tempNormals[normalIndex];
+
+        outVertices.push_back(vertex);
+        outUvs.push_back(uv);
+        outNormals.push_back(normal);
+    }
+
     return true;
 }
 
