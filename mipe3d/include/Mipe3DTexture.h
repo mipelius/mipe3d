@@ -3,12 +3,14 @@
 #include "apidef.h"
 #include "Mipe3DResource.h"
 
+typedef unsigned int GLuint;
+
 namespace mipe3d
 {
 
 class Texture : public Resource
 {
-friend class Renderable;
+friend class ShaderProgram;
 
 public:
     MIPE3D_API Texture(const std::string& filePath);
@@ -19,7 +21,7 @@ protected:
     void unloadInternal() override;
 
 private:
-    // ...
+    GLuint m_textureId;
 };
 
 } // namespace mipe3d
