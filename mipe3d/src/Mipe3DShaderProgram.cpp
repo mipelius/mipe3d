@@ -1,6 +1,7 @@
 #include "Mipe3DShaderProgram.h"
 #include "Mipe3DJsonUtil.h"
 #include "Mipe3DLog.h"
+#include "Mipe3DTexture.h"
 
 #include <fstream>
 #include <sstream>
@@ -77,6 +78,8 @@ bool ShaderProgram::loadInternal(const nlohmann::json& metaDefinition)
         m_programId, UNIFORM_VIEW_MATRIX.c_str());
     m_uniformProjectionMatrixId = glGetUniformLocation(
         m_programId, UNIFORM_PROJECTION_MATRIX.c_str());
+    m_uniformTextureId = glGetUniformLocation(
+        m_programId, UNIFORM_TEXTURE.c_str());
 
     // clean up
     glDetachShader(programId, vertexShaderId);
@@ -113,6 +116,13 @@ void ShaderProgram::bindProjectionMatrix(const glm::mat4x4& projectionMatrix)
 {
     glUniformMatrix4fv(
         m_uniformProjectionMatrixId, 1, GL_FALSE, &projectionMatrix[0][0]);
+}
+
+void ShaderProgram::bindTexture(const Texture& texture)
+{
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, texture.m_textureId);
+    glUniform1i(m_uniformTextureId, 0);
 }
 
 void ShaderProgram::glUnuse()

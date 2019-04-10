@@ -30,11 +30,11 @@ Renderable::Renderable()
 
 void Renderable::render()
 {
-    if (!m_mesh || !m_material)
+    if (!m_mesh || !m_material || !m_material->m_shaderProgram)
     {
         return;
     }
-   
+    
     // NOTE: viewMatrix and projectionMatrix
     //       are calculated for every renderable, which
     //       is not very efficient
@@ -46,6 +46,11 @@ void Renderable::render()
     m_material->m_shaderProgram->bindModelMatrix(modelMatrix);
     m_material->m_shaderProgram->bindViewMatrix(viewMatrix);
     m_material->m_shaderProgram->bindProjectionMatrix(projectionMatrix);
+    
+    if (m_material->m_texture)
+    {
+        m_material->m_shaderProgram->bindTexture(*m_material->m_texture);
+    }
 
     m_mesh->glBindBuffers();
     m_mesh->glDrawTriangles();
