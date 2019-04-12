@@ -14,25 +14,6 @@ namespace mipe3d
 
 // ------------------------ keyboard ------------------------
 
-static Key convertSDLScancodeToKey(SDL_Scancode scancode)
-{
-    switch (scancode)
-    {
-    case SDL_SCANCODE_UP: return Key::UP;
-    case SDL_SCANCODE_DOWN: return Key::DOWN;
-    case SDL_SCANCODE_LEFT: return Key::LEFT;
-    case SDL_SCANCODE_RIGHT: return Key::RIGHT;
-    case SDL_SCANCODE_W: return Key::W;
-    case SDL_SCANCODE_S: return Key::S;
-    case SDL_SCANCODE_A: return Key::A;
-    case SDL_SCANCODE_D: return Key::D;
-    case SDL_SCANCODE_SPACE: return Key::SPACE;
-    case SDL_SCANCODE_ESCAPE: return Key::ESC;
-    default:
-        return Key::UNKNOWN;
-    }
-}
-
 static SDL_Keycode convertKeyToSDLScancode(Key key)
 {
     switch (key)
@@ -73,18 +54,6 @@ bool Keyboard::isKeyDown(Key key) const
     {
         return state[scancode];
     }
-}
-
-bool Keyboard::keyPressed(Key key) const
-{
-    assert(false && "Keyboard::keyPressed(...) not implemented");
-    return false;
-}
-
-bool Keyboard::keyReleased(Key key) const
-{
-    assert(false && "Keyboard::keyReleased(...) not implemented");
-    return false;
 }
 
 // ------------------------ mouse ------------------------

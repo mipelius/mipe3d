@@ -34,14 +34,7 @@ class Keyboard
     friend class Input;
 
 public:
-    // return true, if the key is currently pressed down
     MIPE3D_API bool isKeyDown(Key key) const;
-
-    // return true, if the user pressed the key during the frame
-    MIPE3D_API bool keyPressed(Key key) const;
-
-    // return true, if the user released the key during the frame
-    MIPE3D_API bool keyReleased(Key key) const;
 
 private:
     Keyboard();
