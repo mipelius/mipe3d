@@ -1,6 +1,7 @@
 #include "Mipe3DEngine.h"
 #include "Mipe3DRenderSystem.h"
 #include "Mipe3DResourceManager.h"
+#include "Mipe3DInput.h"
 #include "Mipe3DIScene.h"
 
 #include <SDL.h>
@@ -12,12 +13,14 @@ Engine::Engine()
 {
     m_renderSystem = new RenderSystem();
     m_resourceManager = new ResourceManager();
+    m_input = new Input();
 }
 
 Engine::~Engine() 
 {
     delete m_renderSystem;
     delete m_resourceManager;
+    delete m_input;
 }
 
 void Engine::run(IScene& scene)

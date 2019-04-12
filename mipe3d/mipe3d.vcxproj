@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="include\apidef.h" />
     <ClInclude Include="include\Mipe3DCamera.h" />
+    <ClInclude Include="include\Mipe3DInput.h" />
     <ClInclude Include="include\Mipe3DJsonUtil.h" />
     <ClInclude Include="include\Mipe3DEngine.h" />
     <ClInclude Include="include\Mipe3DIScene.h" />
@@ -40,6 +41,7 @@
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\Mipe3DCamera.cpp" />
+    <ClCompile Include="src\Mipe3DInput.cpp" />
     <ClCompile Include="src\Mipe3DJsonUtil.cpp" />
     <ClCompile Include="src\Mipe3DEngine.cpp" />
     <ClCompile Include="src\Mipe3DLog.cpp" />
