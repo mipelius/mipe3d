@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <string>
+
+#include <ext/vector_int2.hpp>
 #include <vec3.hpp>
 #include <mat4x4.hpp>
 
@@ -13,7 +15,13 @@
 // ---- internal helpers, not meant to be used by the client code ----
 
 MIPE3D_API std::ostream& operator << (
+    std::ostream& out, const glm::ivec2& ivec2);
+
+MIPE3D_API std::ostream& operator << (
     std::ostream& out, const glm::vec3& vec3);
+
+MIPE3D_API std::ostream& operator << (
+    std::ostream& out, const glm::ivec2& vec3);
 
 MIPE3D_API std::ostream& operator << (
     std::ostream& out, const glm::mat4x4& mat4x4);

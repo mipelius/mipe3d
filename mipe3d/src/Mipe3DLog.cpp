@@ -1,6 +1,12 @@
 #include "Mipe3DLog.h"
 #include <iomanip>
 
+std::ostream& operator << (std::ostream& out, const glm::ivec2& ivec2)
+{
+    out << "(" << ivec2.x << ", " << ivec2.y << ")";
+    return out;
+}
+
 std::ostream& operator << (std::ostream& out, const glm::vec3& vec)
 {
     out << "(" << vec.x << ", " << vec.y << ", " << vec.z << ")";
