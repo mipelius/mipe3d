@@ -19,6 +19,7 @@ class Engine
 
 public:
     MIPE3D_API void run(IScene& scene);
+    MIPE3D_API void stop();
 
 private:
     Engine();

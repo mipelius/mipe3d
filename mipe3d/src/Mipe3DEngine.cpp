@@ -3,6 +3,7 @@
 #include "Mipe3DResourceManager.h"
 #include "Mipe3DInput.h"
 #include "Mipe3DIScene.h"
+#include "Mipe3DLog.h"
 
 #include <SDL.h>
 
@@ -25,6 +26,12 @@ Engine::~Engine()
 
 void Engine::run(IScene& scene)
 {
+    if (m_scene)
+    {
+        MIPE3D_LOG_ERROR("Engine is already running!");
+        assert(false);
+    }
+
     m_scene = &scene;
 
     if (startUp())
@@ -34,6 +41,11 @@ void Engine::run(IScene& scene)
     }
 
     m_scene = nullptr;
+}
+
+void Engine::stop()
+{
+    m_isRunning = false;
 }
 
 bool Engine::startUp()
