@@ -1,6 +1,9 @@
 #pragma once
 
 #include "apidef.h"
+
+#include <ext/vector_int2.hpp>
+
 #include <map>
 
 struct SDL_KeyboardEvent;
@@ -31,7 +34,7 @@ class Keyboard
     friend class Input;
 
 public:
-    // return true, if the key currently down
+    // return true, if the key is currently pressed down
     MIPE3D_API bool isKeyDown(Key key) const;
 
     // return true, if the user pressed the key during the frame
@@ -54,7 +57,11 @@ class Mouse
     friend class Input;
 
 public:
-    // ...
+    MIPE3D_API void setCursorVisible(bool visible);
+    MIPE3D_API void setCursorPosition(glm::ivec2 position);
+    MIPE3D_API glm::ivec2 getCursorPosition() const;
+    MIPE3D_API bool isLeftButtonDown() const;
+    MIPE3D_API bool isRightButtonDown() const;
 
 private:
     Mouse();
@@ -70,7 +77,7 @@ friend class Engine;
 
 public:
     MIPE3D_API const Keyboard& keyboard() const;
-    MIPE3D_API const Mouse& mouse() const;
+    MIPE3D_API Mouse& mouse() const;
 
 private:
     Input();
@@ -88,6 +95,6 @@ private:
 
 // ---- singleton accessor ----
 
-MIPE3D_API const Input& input();
+MIPE3D_API Input& input();
 
 } // namespace mipe3d

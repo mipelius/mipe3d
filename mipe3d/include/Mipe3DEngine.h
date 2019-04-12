@@ -15,7 +15,7 @@ class Engine
     friend MIPE3D_API Engine& engine();
     friend MIPE3D_API ResourceManager& resourceManager();
     friend MIPE3D_API RenderSystem& renderSystem();
-    friend MIPE3D_API const Input& input();
+    friend MIPE3D_API Input& input();
 
 public:
     MIPE3D_API void run(IScene& scene);

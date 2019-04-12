@@ -15,6 +15,7 @@ class Renderable;
 class RenderSystem
 {
     friend class Engine;
+    friend class Mouse;
 
 public:
     MIPE3D_API Renderable* createRenderable();

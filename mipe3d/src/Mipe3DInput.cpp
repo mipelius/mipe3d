@@ -1,11 +1,13 @@
 #include "Mipe3DInput.h"
 #include "Mipe3DEngine.h"
 #include "Mipe3DLog.h"
+#include "Mipe3DRenderSystem.h"
 
 #include <cassert>
 #include <SDL_keyboard.h>
 #include <SDL_keycode.h>
 #include <SDL_mouse.h>
+#include <SDL_events.h>
 
 namespace mipe3d
 {
@@ -94,6 +96,42 @@ Mouse::~Mouse()
 {
 }
 
+void Mouse::setCursorVisible(bool visible)
+{
+    SDL_ShowCursor(visible ? SDL_ENABLE : SDL_DISABLE);
+}
+
+void Mouse::setCursorPosition(glm::ivec2 position)
+{
+    SDL_WarpMouseInWindow(
+        renderSystem().m_window,
+        position.x,
+        position.y);
+}
+
+glm::ivec2 Mouse::getCursorPosition() const
+{
+    glm::ivec2 result;
+    SDL_GetMouseState(&result.x, &result.y);
+
+    return result;
+}
+
+bool Mouse::isLeftButtonDown() const
+{
+    auto state = SDL_GetMouseState(NULL, NULL);
+
+    return state & SDL_BUTTON(SDL_BUTTON_LEFT);
+}
+
+bool Mouse::isRightButtonDown() const
+{
+    auto state = SDL_GetMouseState(NULL, NULL);
+
+    return state & SDL_BUTTON(SDL_BUTTON_RIGHT);
+}
+
+
 // ------------------------ input ------------------------
 
 Input::Input()
@@ -125,12 +163,12 @@ const Keyboard& Input::keyboard() const
 {
     return *m_keyboard;
 }
-const Mouse& Input::mouse() const
+Mouse& Input::mouse() const
 {
     return *m_mouse;
 }
 
-const Input& input()
+Input& input()
 {
     return *(engine().m_input);
 }
