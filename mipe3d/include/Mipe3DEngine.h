@@ -8,6 +8,7 @@ namespace mipe3d
 class RenderSystem;
 class ResourceManager;
 class Input;
+class Time;
 class IScene;
 
 class Engine
@@ -16,6 +17,7 @@ class Engine
     friend MIPE3D_API ResourceManager& resourceManager();
     friend MIPE3D_API RenderSystem& renderSystem();
     friend MIPE3D_API Input& input();
+    friend MIPE3D_API const Time& time();
 
 public:
     MIPE3D_API void run(IScene& scene);
@@ -33,7 +35,7 @@ private:
     RenderSystem* m_renderSystem = nullptr;
     ResourceManager* m_resourceManager = nullptr;
     Input* m_input = nullptr;
-
+    Time* m_time = nullptr;
     IScene* m_scene = nullptr;
 };
 

@@ -4,6 +4,7 @@
 #include "Mipe3DInput.h"
 #include "Mipe3DIScene.h"
 #include "Mipe3DLog.h"
+#include "Mipe3DTime.h"
 
 #include <SDL.h>
 
@@ -15,6 +16,7 @@ Engine::Engine()
     m_renderSystem = new RenderSystem();
     m_resourceManager = new ResourceManager();
     m_input = new Input();
+    m_time = new Time();
 }
 
 Engine::~Engine() 
@@ -22,6 +24,7 @@ Engine::~Engine()
     delete m_renderSystem;
     delete m_resourceManager;
     delete m_input;
+    delete m_time;
 }
 
 void Engine::run(IScene& scene)
@@ -58,6 +61,14 @@ bool Engine::startUp()
     {
         return false;
     }
+    if (!m_input->startUp())
+    {
+        return false;
+    }
+    if (!m_time->startUp())
+    {
+        return false;
+    }
     if (!m_scene->startUp())
     {
         return false;
@@ -70,6 +81,8 @@ bool Engine::shutDown()
     bool success = true;
 
     success = m_scene->shutDown() && success;
+    success = m_time->shutDown() && success;
+    success = m_input->shutDown() && success;
     success = m_resourceManager->shutDown() && success;
     success = m_renderSystem->shutDown() && success;
 
@@ -82,9 +95,11 @@ void Engine::startGameLoop()
 
     while (m_isRunning)
     {
+        m_time->update();
+        m_input->update();
         m_scene->update();
         m_renderSystem->update();
-
+        
         if (SDL_QuitRequested())
         {
             m_isRunning = false;
