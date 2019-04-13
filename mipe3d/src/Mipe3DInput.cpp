@@ -118,10 +118,15 @@ Input::~Input()
 
 bool Input::startUp()
 {
+    // SDL_INIT_VIDEO is initialized in RenderSystem::startUp()
+    // which seems to initialize keyboard and mouse as well
+    // ---> no need to do anything here
     return true;
 }
 bool Input::shutDown()
 {
+    // Input::startUp() did nothing,
+    // so we don't do anything here either
     return true;
 }
 void Input::update()
