@@ -1,3 +1,6 @@
+// Copyright (c) Miika Pelkonen. All rights reserved.
+// Licensed under the MIT License.
+
 #include "Mipe3DTime.h"
 #include "Mipe3DEngine.h" 
 #include "Mipe3DLog.h"

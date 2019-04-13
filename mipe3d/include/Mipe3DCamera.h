@@ -1,3 +1,6 @@
+// Copyright (c) Miika Pelkonen. All rights reserved.
+// Licensed under the MIT License.
+
 #pragma once
 
 #include "apidef.h"

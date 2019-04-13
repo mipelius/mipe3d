@@ -1,3 +1,6 @@
+// Copyright (c) Miika Pelkonen. All rights reserved.
+// Licensed under the MIT License.
+
 #include "Mipe3DMaterial.h"
 #include "Mipe3DResourceManager.h"
 #include "Mipe3DShaderProgram.h"

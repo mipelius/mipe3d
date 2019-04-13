@@ -1,3 +1,6 @@
+// Copyright (c) Miika Pelkonen. All rights reserved.
+// Licensed under the MIT License.
+
 #include "Mipe3DTransform.h"
 
 #include <gtx/transform.hpp>
