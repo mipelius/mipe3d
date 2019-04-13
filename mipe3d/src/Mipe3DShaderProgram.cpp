@@ -80,6 +80,8 @@ bool ShaderProgram::loadInternal(const nlohmann::json& metaDefinition)
         m_programId, UNIFORM_PROJECTION_MATRIX.c_str());
     m_uniformTextureId = glGetUniformLocation(
         m_programId, UNIFORM_TEXTURE.c_str());
+    m_uniformTimeId = glGetUniformLocation(
+        m_programId, UNIFORM_TIME.c_str());
 
     // clean up
     glDetachShader(programId, vertexShaderId);
@@ -123,6 +125,11 @@ void ShaderProgram::bindTexture(const Texture& texture)
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture.m_textureId);
     glUniform1i(m_uniformTextureId, 0);
+}
+
+void ShaderProgram::bindTime(float time)
+{
+    glUniform1f(m_uniformTimeId, time);
 }
 
 void ShaderProgram::glUnuse()

@@ -4,6 +4,7 @@
 #include "Mipe3DMaterial.h"
 #include "Mipe3DShaderProgram.h"
 #include "Mipe3DCamera.h"
+#include "Mipe3DTime.h"
 
 namespace mipe3d
 {
@@ -46,7 +47,8 @@ void Renderable::render()
     m_material->m_shaderProgram->bindModelMatrix(modelMatrix);
     m_material->m_shaderProgram->bindViewMatrix(viewMatrix);
     m_material->m_shaderProgram->bindProjectionMatrix(projectionMatrix);
-    
+    m_material->m_shaderProgram->bindTime(time().getTime());
+
     if (m_material->m_texture)
     {
         m_material->m_shaderProgram->bindTexture(*m_material->m_texture);

@@ -41,17 +41,20 @@ private:
     void bindViewMatrix(const glm::mat4x4& viewMatrix);
     void bindProjectionMatrix(const glm::mat4x4& projectionMatrix);
     void bindTexture(const Texture& texture);
+    void bindTime(float time);
 
     GLuint m_programId = 0;
     GLuint m_uniformModelMatrixId = 0;
     GLuint m_uniformViewMatrixId = 0;
     GLuint m_uniformProjectionMatrixId = 0;
     GLuint m_uniformTextureId = 0;
+    GLuint m_uniformTimeId = 0;
 
     const std::string UNIFORM_MODEL_MATRIX = "u_modelMatrix";
     const std::string UNIFORM_VIEW_MATRIX = "u_viewMatrix";
     const std::string UNIFORM_PROJECTION_MATRIX = "u_projectionMatrix";
     const std::string UNIFORM_TEXTURE = "u_texture";
+    const std::string UNIFORM_TIME = "u_time";
 };
 
 } // namespace mipe3d
