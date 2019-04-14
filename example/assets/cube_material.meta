@@ -1,0 +1,5 @@
+{
+    "type" : "material",
+    "shader_program" : "cube_shader_program",
+    "texture" : "cube_texture"
+}

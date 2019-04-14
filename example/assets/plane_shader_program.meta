@@ -1,0 +1,5 @@
+{
+    "type" : "shader_program",
+    "vertex_shader_source" : "assets\\plane_shader_program.vert",
+    "fragment_shader_source" : "assets\\plane_shader_program.frag"
+}
