@@ -68,6 +68,11 @@ void ExampleScene::update()
             phase,
             sin(phase)
         });
+
+    if (input().keyboard().isKeyDown(Key::ESC))
+    {
+        engine().stop();
+    }
 }
 
 } // namespace example
