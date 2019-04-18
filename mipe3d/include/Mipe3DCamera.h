@@ -34,6 +34,8 @@ public:
 private:
     Camera();
     ~Camera();
+    Camera(const Camera& other) = delete;
+    Camera& operator=(const Camera& other) = delete;
 
     float m_fieldOfView = glm::radians(45.0f);
     float m_near = 0.1f;
