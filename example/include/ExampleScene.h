@@ -16,12 +16,12 @@ namespace example
 class ExampleScene : public IScene
 {
 public:
-	ExampleScene();
-	~ExampleScene() override;
+    ExampleScene();
+    ~ExampleScene() override;
 
-	bool startUp() override;
-	bool shutDown() override;
-	void update() override;
+    bool startUp() override;
+    bool shutDown() override;
+    void update() override;
 
 private:
     Renderable* m_cube;

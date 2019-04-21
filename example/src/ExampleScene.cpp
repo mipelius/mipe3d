@@ -49,12 +49,12 @@ bool ExampleScene::startUp()
     camera().setPosition({ 0.0f, 10.0f, 20.0f });
     camera().setEulerAngles({ glm::radians(-30.0f), 0.0f, 0.0f });
 
-	return true;
+    return true;
 }
 
 bool ExampleScene::shutDown()
 {
-	return true;
+    return true;
 }
 
 void ExampleScene::update()
