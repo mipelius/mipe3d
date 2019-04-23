@@ -19,7 +19,7 @@
 # -----
 #
 # In object mode, select an object, whose weights you want to export.
-# Then go to Object/Extract weights and select filename for your 
+# Then go to Object/Export weights and select filename for your
 # weights file (e.g. "my_model.weights") and finally press Export weights.
 
 bl_info = {
