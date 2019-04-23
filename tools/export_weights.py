@@ -55,9 +55,10 @@ class ExportWeights(Operator, ImportHelper):
                 sum += 1.0
                 weights[0] = 1.0
                 
-            for w in weights:
+            file.write(str(weights[0] / sum))
+            for w in weights[1:]:
+                file.write(' ')
                 file.write(str(w / sum))
-                file.write(' ')        
             
             file.write('\n')
 
